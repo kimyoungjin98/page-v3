@@ -7,10 +7,11 @@ export interface ButtonProps {
   children?: ReactNode;
   onClick?: () => void;
   expand?: boolean;
+  className?: string;
 }
 
 export function Button(props: ButtonProps) {
-  const expand = props.expand ? "w-full" : "";
+  const expand = props.expand ? "w-full" : "w-max";
 
   const setStyle = () => {
     const { variant } = props;
@@ -33,7 +34,7 @@ export function Button(props: ButtonProps) {
       onClick={props.onClick}
       type={props.type}
       className={
-        "font-semibold p-4 rounded-md w-max h-max min-w-max outline-none select-none transition-all flex gap-2 items-center justify-center " +
+        "font-semibold p-4 rounded-md h-max min-w-max outline-none select-none transition-all flex gap-2 items-center justify-center " +
         setStyle() +
         ` ${expand}`
       }

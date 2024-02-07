@@ -1,4 +1,3 @@
-import Icon from "@/components/Icon";
 import Title from "@/components/Title";
 import IntroductionCard from "@/components/introduction/Card";
 import IntroductionHistoryItem from "@/components/introduction/HistoryItem";
@@ -8,7 +7,7 @@ const Introduction = () => {
     <section className="flex flex-col gap-10 w-full h-full p-6">
       <article className="flex flex-col gap-6">
         <Title emoji="👨‍💻">About Me</Title>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="md:grid flex flex-col md:grid-cols-2 lg:grid-cols-4 gap-6">
           <IntroductionCard label="Name" icon="mdi:person">
             Kim YoungJin
           </IntroductionCard>
@@ -51,7 +50,7 @@ const Introduction = () => {
           <p>- 새로운 기술을 사용하는 것을 좋아합니다.</p>
           <p>- 주 포지션은 프론트엔드 이지만 풀 스택을 지향합니다.</p>
           <p>- 효율적인 설계에 관심이 있습니다. (아키텍처 등)</p>
-          <p>- 사용자의 편리함을 위해 UI/UX에 대하여 고민하며 개발합니다.</p>
+          <p>- 사용자의 편의성을 위해 UI/UX에 대하여 고민하며 개발합니다.</p>
         </div>
       </article>
       <article className="flex flex-col gap-6">

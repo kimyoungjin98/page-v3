@@ -1,7 +1,7 @@
 import TopNav from "@/components/TopNav";
-import "./globals.css";
-import { Inter, Noto_Sans_KR } from "next/font/google";
 import { cls } from "@/lib/class-name";
+import { Noto_Sans_KR } from "next/font/google";
+import "./globals.css";
 
 export const metadata = {
   title: "Kim YoungJin Portfolio Page",
@@ -12,20 +12,20 @@ const font = Noto_Sans_KR({
   subsets: ["latin"],
 });
 
-const defautClass = "p-4 h-full overflow-hidden text-gray-200 leading-tight";
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const className = cls(
+    "w-full h-full select-none text-gray-200 leading-tight",
+    font.className
+  );
+
   return (
     <html lang="ko">
       <body>
-        <main className="bg-black w-full h-full overflow-hidden select-none">
-          <TopNav />
-          <div className={cls(defautClass, font.className)}>{children}</div>
-        </main>
+        <main className={className}>{children}</main>
       </body>
     </html>
   );

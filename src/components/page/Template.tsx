@@ -1,5 +1,6 @@
 "use client";
 
+import { useThemeStore } from "@/hooks/theme.store";
 import { cls } from "@/lib/class-name";
 import { usePathname } from "next/navigation";
 
@@ -16,10 +17,17 @@ export interface IMenus {
 
 const PageTemplate = ({ children, menus, title }: IProps) => {
   const path = usePathname();
+  const theme = useThemeStore((state) => state.theme);
+  const isDark = useThemeStore((state) => state.theme === "dark");
+
+  const menuItemStyle = {
+    dark: "text-white",
+    light: "text-gray-700",
+  };
 
   const menuItem = (item: IMenus) => {
     const activeClassName =
-      item.path === path ? "text-white" : "text-gray-400 ";
+      item.path === path ? menuItemStyle[theme] : "text-gray-400 ";
     const className = cls(
       "cursor-pointer hover:underline underline-offset-4",
       activeClassName
@@ -35,7 +43,12 @@ const PageTemplate = ({ children, menus, title }: IProps) => {
   const menuWrapper = () => {
     if (menus && menus.length > 0) {
       return (
-        <article className="flex flex-col gap-4 min-w-[10rem] mt-[5rem] h-full border-r border-gray-800">
+        <article
+          className={cls(
+            "flex flex-col gap-4 min-w-[10rem] mt-[5rem] h-full border-r",
+            isDark ? "border-gray-800" : "border-gray-300"
+          )}
+        >
           {menus.map((item) => menuItem(item))}
         </article>
       );
@@ -50,9 +63,21 @@ const PageTemplate = ({ children, menus, title }: IProps) => {
       <article className="flex flex-col gap-6 p-4 w-full h-full">
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-6 w-full">
-            <p className="text-gray-200 text-2xl font-semibold">{title}</p>
+            <p
+              className={cls(
+                "text-2xl font-semibold",
+                isDark ? "text-gray-200" : "text-gray-700"
+              )}
+            >
+              {title}
+            </p>
           </div>
-          <div className="w-full h-px bg-gray-700"></div>
+          <div
+            className={cls(
+              "w-full h-px",
+              isDark ? "bg-gray-700" : "bg-gray-300"
+            )}
+          ></div>
         </div>
         <div className="w-full h-full">{children}</div>
       </article>

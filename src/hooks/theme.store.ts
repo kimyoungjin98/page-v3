@@ -2,9 +2,8 @@
 
 import { create } from "zustand";
 
-const THEME_KEY = "v3_theme";
-
-type Theme = 'light' | 'dark';
+export const THEME_KEY = "v3_theme";
+export type Theme = 'light' | 'dark';
 
 interface IThemeState {
 	theme: Theme;

@@ -1,4 +1,3 @@
-import TopNav from "@/components/TopNav";
 import { cls } from "@/lib/class-name";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
@@ -18,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const className = cls(
-    "w-full h-full select-none text-gray-200 leading-tight",
+    "w-full h-full select-none leading-tight",
     font.className
   );
 

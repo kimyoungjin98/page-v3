@@ -10,11 +10,10 @@ import { cls } from "@/lib/class-name";
 
 const TopNav = () => {
   const pathname = usePathname();
-  const themeStore = useThemeStore();
-  const containerTheme =
-    themeStore.theme === "dark"
-      ? "bg-black/70 border-neutral-700"
-      : "bg-white border-gray-200";
+  const isDark = useThemeStore((state) => state.theme === "dark");
+  const containerTheme = isDark
+    ? "bg-black/70 border-neutral-700"
+    : "bg-white border-gray-300";
   const containerClassName = cls(
     "z-50 fixed flex items-center w-full p-5 border-b backdrop-blur-md",
     containerTheme
@@ -22,7 +21,7 @@ const TopNav = () => {
 
   const iconClassName = cls(
     "w-6 h-6 cursor-pointer",
-    themeStore.theme === "dark" ? "bg-gray-200" : "bg-gray-800"
+    isDark ? "bg-gray-200" : "bg-gray-800"
   );
 
   const [menus] = useState([
@@ -35,7 +34,7 @@ const TopNav = () => {
   const menuContainer = () => {
     return menus.map((item) => {
       let activeClass = "";
-      if (themeStore.theme === "dark") {
+      if (isDark) {
         activeClass = item.path === pathname ? "text-white" : "text-gray-400";
       } else {
         activeClass =

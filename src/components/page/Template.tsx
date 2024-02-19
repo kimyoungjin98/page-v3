@@ -45,7 +45,7 @@ const PageTemplate = ({ children, menus, title }: IProps) => {
       return (
         <article
           className={cls(
-            "flex flex-col gap-4 min-w-[10rem] mt-[5rem] h-full border-r",
+            "lg:flex hidden flex-col gap-4 lg:min-w-[10rem] mt-[5rem] h-full border-r",
             isDark ? "border-gray-800" : "border-gray-300"
           )}
         >
@@ -58,7 +58,7 @@ const PageTemplate = ({ children, menus, title }: IProps) => {
   };
 
   return (
-    <section className="flex gap-6 w-full h-full p-6 mx-auto container">
+    <section className="flex flex-col lg:flex-row gap-6 w-full h-full lg:p-6 mx-auto container">
       {menuWrapper()}
       <article className="flex flex-col gap-6 p-4 w-full h-full">
         <div className="flex flex-col gap-6 w-full">

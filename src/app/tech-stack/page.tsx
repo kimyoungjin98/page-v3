@@ -5,11 +5,15 @@ import TechStackItem from "@/components/tech-stack/Item";
 import { cls } from "@/lib/class-name";
 import { BACK_END, DEV_OPS, FRONT_END, LANGUAGES } from "@/lib/tech-stack.mock";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const TechStack = () => {
   const params = useSearchParams();
   const [parent, enableAnimations] = useAutoAnimate();
+
+  if (!params?.get("category")) {
+    useRouter().push("/tech-stack?category=all");
+  }
 
   const isAll = params?.get("category") === "all";
   const isFrontEnd = isAll || params?.get("category") === "front-end";

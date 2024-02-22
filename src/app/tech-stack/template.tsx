@@ -5,11 +5,23 @@ interface IProps {
 }
 
 const menus: IMenus[] = [
-  { name: "All", path: "/tech-stack" },
-  { name: "Front-End", path: "/tech-stack/front-end" },
-  { name: "Back-End", path: "/tech-stack/back-end" },
-  { name: "DevOps", path: "/tech-stack/devops" },
-  { name: "ETC", path: "/tech-stack/etc" },
+  { name: "All", path: "/tech-stack", query: { category: "all" } },
+  { name: "Language", path: "/tech-stack", query: { category: "language" } },
+  {
+    name: "Front-End",
+    path: "/tech-stack",
+    query: { category: "front-end" },
+  },
+  {
+    name: "Back-End",
+    path: "/tech-stack",
+    query: { category: "back-end" },
+  },
+  {
+    name: "DevOps",
+    path: "/tech-stack",
+    query: { category: "dev-ops" },
+  },
 ];
 
 const TechStackTemplate = ({ children }: IProps) => {

@@ -2,7 +2,8 @@
 
 import { useThemeStore } from "@/hooks/theme.store";
 import { cls } from "@/lib/class-name";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface IProps {
   title: string;
@@ -13,10 +14,12 @@ interface IProps {
 export interface IMenus {
   name: string;
   path: string;
+  query?: {
+    [key: string]: string;
+  };
 }
 
 const PageTemplate = ({ children, menus, title }: IProps) => {
-  const path = usePathname();
   const theme = useThemeStore((state) => state.theme);
   const isDark = useThemeStore((state) => state.theme === "dark");
 
@@ -26,17 +29,23 @@ const PageTemplate = ({ children, menus, title }: IProps) => {
   };
 
   const menuItem = (item: IMenus) => {
+    const query = useSearchParams().get("category");
+
     const activeClassName =
-      item.path === path ? menuItemStyle[theme] : "text-gray-400 ";
+      item?.query?.category === query ? menuItemStyle[theme] : "text-gray-400 ";
     const className = cls(
       "cursor-pointer hover:underline underline-offset-4",
       activeClassName
     );
 
+    const path = `${item.path}?category=${item.query?.category}`;
+
     return (
-      <p key={item.path} className={className}>
-        {item.name}
-      </p>
+      <Link href={path}>
+        <p key={path} className={className}>
+          {item.name}
+        </p>
+      </Link>
     );
   };
 

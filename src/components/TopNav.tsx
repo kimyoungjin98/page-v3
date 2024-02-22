@@ -28,7 +28,7 @@ const TopNav = () => {
     { name: "Home", path: "/" },
     { name: "Introduction", path: "/introduction" },
     { name: "Portfolio", path: "/portfolio" },
-    { name: "Tech Stack", path: "/tech-stack" },
+    { name: "Tech Stack", path: "/tech-stack", query: { category: "all" } },
   ]);
 
   const menuContainer = () => {
@@ -41,12 +41,12 @@ const TopNav = () => {
           item.path === pathname ? "text-gray-900" : "text-gray-400";
       }
 
+      const path = item.query
+        ? `${item.path}?category=${item.query.category}`
+        : item.path;
+
       return (
-        <Link
-          key={item.path}
-          href={item.path}
-          className={cls(activeClass, "font-bold")}
-        >
+        <Link key={path} href={path} className={cls(activeClass, "font-bold")}>
           {item.name}
         </Link>
       );
